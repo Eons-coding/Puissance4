@@ -5,4 +5,4 @@
  * @author xavier
  *
  */
-package core;
+package be.ephec.network;
