@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>160</y>
+      <w>290</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>Board
+--
+-board: Pawn[]
+-pawnLeft: int
+-line: int
+column: int
+--
++Board()
++Board(int, int)
++getLine() : return int
++getColumn() : return int
++getBoard() : return Pawn[]
++getLastPlay(): return Coordinate
++toString() : return String
++isPossible : return boolean
++lastPosition() : return 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1210</x>
+      <y>410</y>
+      <w>190</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Coordinate
+--
+-x : int
+-y : int
+--
++Coordinate(int, int)
++getX() : return int
++getY() : return int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>370</y>
+      <w>160</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Pawn
+--
+-color : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>340</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Coins
+--
+-color : int
+--
++Pion(int)
++getColor() : return string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>710</y>
+      <w>210</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+-name : string
+-color : int
+enemy : player
+--
++player(string, int)
++getName() : return string
++getColor() : return int
++getEnemy(): return player
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
