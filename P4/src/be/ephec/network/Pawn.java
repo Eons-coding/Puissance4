@@ -1,19 +1,19 @@
 package be.ephec.network;
 
 public class Pawn extends Coordinate {
-	int color; //TODO passer la couleur via le Player
+	int playerId; //TODO passer la couleur via le Player
 
-	Pawn(int x1, int y1, int color1) {
+	Pawn(int x1, int y1, int player) {
 		super(x1, y1);
-		setColor(color1);		
+		setplayerId(player);		
 	}
 
-	public int getColor() {
-		return color;
+	public int getplayerId() {
+		return playerId;
 	}
 
-	public void setColor(int color) {
-		this.color = color;
+	public void setplayerId(int playerId) {
+		this.playerId = playerId;
 	}
 
 }

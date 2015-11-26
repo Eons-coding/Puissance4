@@ -1,19 +1,16 @@
 package be.ephec.network;
 
-import java.util.Arrays;
-
 public class Board{
 	int gameboard[][];
-	int pawnLeft;
+	Pawn last;
+	
 	
 	Board (int height, int width){
 		this.gameboard = new int[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				gameboard[i][j] = 0;
-				System.out.print(gameboard[i][j] + " ");
 			}
-			System.out.println("");
 		}
 	}
 	
@@ -21,15 +18,16 @@ public static void main(String[] args){
 		Board test = new Board(5, 5);
 		//test.PrintBoard();
 		//System.out.println("Check si 0 present: "+checkColumn(test.gameboard[0]));
-		test.addPawn(2, 1);
-		test.addPawn(2, 2);
-		test.addPawn(2, 1);
-		test.addPawn(2, 2);
-		test.addPawn(2, 1);
-		test.addPawn(2, 2);
 		test.addPawn(1, 1);
-		test.addPawn(4, 2);
-		test.addPawn(2, 1);
+		test.addPawn(2, 2);
+		test.addPawn(3, 3);
+		test.addPawn(4, 4);
+		test.addPawn(0, 9);
+		test.addPawn(2, 2);
+		test.addPawn(2, 5);
+		test.addPawn(2, 6);
+		test.addPawn(2, 7);
+		test.addPawn(2, 8);
 		test.PrintBoard();
 	}
 	
@@ -51,7 +49,7 @@ public static void main(String[] args){
 	 * @return la position du dernier espace libre ou -1 si plein
 	 */
 	public static int checkColumn(int[] arr) {
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = (arr.length-1); i >= 0; i--) {
 			if (arr[i] == 0) {
 				return i;
 			} 
@@ -61,19 +59,24 @@ public static void main(String[] args){
 	
 	public boolean addPawn(int column, int playerId){
 		int a = checkColumn(this.gameboard[column]);
+		if (playerId != 1 && playerId != 2) {
+			System.out.println("Id du joueur invalide");
+			return false;
+		}
 		if (a != -1) {
 			this.gameboard[column][a] = playerId;
+			this.last.setX(column);
+			this.last.setY(a);
+			System.out.println("Joueur "+playerId+": Pion placé en "+column+":"+a);
 			return true;
 		}
 		System.out.println("Erreur: Colonne "+column+" pleine");
 		return false;
 	}
 	
-	private int getPawnLeft() {
-		return pawnLeft;
-	}
-	private void setPawnLeft(int pawnLeft) {
-		this.pawnLeft = pawnLeft;
+	public int victory(){
+		
+		return 0;
 	}
 	
 	
