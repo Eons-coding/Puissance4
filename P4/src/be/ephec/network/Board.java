@@ -1,12 +1,10 @@
 package be.ephec.network;
 
 public class Board{
-	int gameboard[][];
-	Pawn last;
-	
-	
+		
 	Board (int height, int width){
-		this.gameboard = new int[height][width];
+		int[][] gameboard = new int[height][width];
+		Pawn last;
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				gameboard[i][j] = 0;
@@ -16,6 +14,7 @@ public class Board{
 	
 public static void main(String[] args){
 		Board test = new Board(5, 5);
+		
 		//test.PrintBoard();
 		//System.out.println("Check si 0 present: "+checkColumn(test.gameboard[0]));
 		test.addPawn(1, 1);
@@ -29,6 +28,7 @@ public static void main(String[] args){
 		test.addPawn(2, 7);
 		test.addPawn(2, 8);
 		test.PrintBoard();
+		
 	}
 	
 	public void PrintBoard(){
@@ -67,16 +67,25 @@ public static void main(String[] args){
 			this.gameboard[column][a] = playerId;
 			this.last.setX(column);
 			this.last.setY(a);
+			this.last.setplayerId(playerId);
 			System.out.println("Joueur "+playerId+": Pion placé en "+column+":"+a);
+			this.victory();
 			return true;
 		}
 		System.out.println("Erreur: Colonne "+column+" pleine");
 		return false;
 	}
 	
-	public int victory(){
+	
+	/*
+	 * Create Exception
+	 * checkColumn
+	 * checkRow
+	 * checkDiagonal
+	 */
+	public void victory(){
 		
-		return 0;
+	
 	}
 	
 	
