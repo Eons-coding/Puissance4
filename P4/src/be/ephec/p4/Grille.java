@@ -75,7 +75,7 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 		int col = src.col;
 		int ligne = src.jeu.searchLine(col);
 		if (ligne != -1) {
-			Case cc = (Case)src.jeu.plateau.pane.getComponent((src.jeu.opts.getGameWidth()) * (ligne - 1) + (col - 1));
+			Case cc = (Case)src.jeu.plateau.pane.getComponent((src.jeu.opts.getNbCol()) * (ligne - 1) + (col - 1));
 			cc.modifierBg(new Color(198, 198, 242));
 			repaint();
 		}
@@ -86,7 +86,7 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 		int col = src.col;
 		int ligne = src.jeu.searchLine(col);
 		if (ligne != -1) {
-			Case cc = (Case)src.jeu.plateau.pane.getComponent((src.jeu.opts.getGameWidth()) * (ligne - 1) + (col - 1));
+			Case cc = (Case)src.jeu.plateau.pane.getComponent((src.jeu.opts.getNbCol()) * (ligne - 1) + (col - 1));
 			cc.modifierBg(Color.white);
 			repaint();
 		}
