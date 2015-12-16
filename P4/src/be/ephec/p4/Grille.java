@@ -50,11 +50,7 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 	
 	/** Adds the buttons in the toolbar and adds the ActionListeners to them*/	
 	public void makeToolBar() {
-		//fermer.addActionListener(this);
 		comput.addActionListener(this);
-		
-		
-		//bar.add(fermer);
 		bar.add(comput);
 	}
 	
