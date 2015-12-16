@@ -1,4 +1,5 @@
 package be.ephec.p4;
+
 import java.io.*;
 import java.util.StringTokenizer;
 
@@ -230,6 +231,10 @@ public class Jeu {
 		}
 			
 				
+	}
+	
+	public static void nouveauJeu() {
+		Jeu j = new Jeu(true);
 	}
 	
 	public boolean coupValable(int ligne, int col) {
