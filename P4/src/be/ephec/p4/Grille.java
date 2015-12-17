@@ -13,13 +13,19 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 	
 	JToolBar bar = new JToolBar();
 	
-	ImageIcon pionR = new ImageIcon("pionR.gif");
-	ImageIcon pionV = new ImageIcon("pionV.gif");
+	ImageIcon pionR = new ImageIcon("pionR.png");
+	ImageIcon pionV = new ImageIcon("pionV.png");
 	
-	JButton comput = new JButton("Jouer !");
+	JButton comput = new JButton("Jouer");
 	
 	JLabel statusBar;
     
+	/**
+	 * Construction de la grille de jeu
+	 * @param nbRow Nombre de lignes à créer
+	 * @param nbCol Nombre de colonnes à créer
+	 * @param jeu Objet Jeu en cours
+	 */
 	public Grille(int nbRow, int nbCol, Jeu jeu) {
 		super("Puissance 4");
 		setSize(400, 300);
@@ -44,17 +50,22 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 		
 		addWindowListener(this);
 		
-		nbGrilles++;   // Une nouvelle grille a ï¿½tï¿½ crï¿½ï¿½e
+		nbGrilles++;
 		
 	}
 	
-	/** Adds the buttons in the toolbar and adds the ActionListeners to them*/	
+	/** Ajoute les boutons au menu et y associe leurs ActionListeners*/	
 	public void makeToolBar() {
 		comput.addActionListener(this);
 		bar.add(comput);
 	}
 	
-	/** Adds nbRow * nbCol cells in the Grille object */	
+	/**
+	 * Ajout des lignes et des colonnes à la grille de jeu	
+	 * @param nbRow Nombre de lignes à créer
+	 * @param nbCol Nombre de colonnes à créer
+	 * @param jeu Objet Jeu en cours
+	 */
 	public void makeCells(int nbRow, int nbCol, Jeu jeu) {
 		Case c;
 		for (int i = 0; i < nbRow; i++) {
@@ -70,43 +81,48 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 
 	}
 	
+	/** Modification de la couleur de la case où le jeton sera joué*/
 	public void mouseEntered(MouseEvent evt) {
 		Case src = (Case)evt.getSource();
-		int col = src.col;
-		int ligne = src.jeu.searchLine(col);
+		int col = src.getCol();
+		int ligne = src.getJeu().searchLine(col);
 		if (ligne != -1) {
-			Case cc = (Case)src.jeu.plateau.pane.getComponent((src.jeu.opts.getNbCol()) * (ligne - 1) + (col - 1));
+			Case cc = (Case)src.getJeu().plateau.pane.getComponent((src.getJeu().opts.getNbCol()) * (ligne - 1) + (col - 1));
 			cc.modifierBg(new Color(198, 198, 242));
 			repaint();
 		}
 	}
-	
+
+	/** Modification de la couleur de la case où le jeton sera joué*/
 	public void mouseExited(MouseEvent evt) {
 		Case src = (Case)evt.getSource();
-		int col = src.col;
-		int ligne = src.jeu.searchLine(col);
+		int col = src.getCol();
+		int ligne = src.getJeu().searchLine(col);
 		if (ligne != -1) {
-			Case cc = (Case)src.jeu.plateau.pane.getComponent((src.jeu.opts.getNbCol()) * (ligne - 1) + (col - 1));
+			Case cc = (Case)src.getJeu().plateau.pane.getComponent((src.getJeu().opts.getNbCol()) * (ligne - 1) + (col - 1));
 			cc.modifierBg(Color.white);
 			repaint();
 		}
 	}
 	
+	/** Traitement de la colonne sélectionnée par le joueur*/
 	public void mousePressed(MouseEvent evt) {
 		Case src = (Case)evt.getSource();
-		src.jeu.jouer(src.col);
+		src.getJeu().jouer(src.getCol());
 	}
 	
 	public void mouseReleased(MouseEvent evt) {
 		
 	}
 	
+	/** Traitement de l'action sélectionnée par le joueur*/
 	public void actionPerformed(ActionEvent actionEvent) {
 		JButton src = (JButton)actionEvent.getSource();
 		if (src == comput) {
 			Case c = (Case)this.pane.getComponent(0);
-			c.jeu.ordiJoue();
+			c.getJeu().ordiJoue();
 		}
+		// Amélioration possible: UNDO
 	}
 	
 	public void windowActivated(java.awt.event.WindowEvent windowEvent) {
@@ -115,9 +131,10 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 	public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 	}
 	
+	/** Fermeture automatique si aucune partie en cours*/
 	public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 		nbGrilles--;
-		if (nbGrilles == 0) // quit if 0 games opened
+		if (nbGrilles == 0)
 			System.exit(-1);
 	}
 	

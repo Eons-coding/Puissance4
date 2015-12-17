@@ -42,7 +42,10 @@ public class OptionsGUI extends JFrame implements ActionListener {
 
 	JButton ok = new JButton("Ok");
 	
-	
+	/**
+	 * Construction de la fenêtre d'options
+	 * @param opts Ojet Options contenant les options souhaitées à l'initialisation
+	 */
 	public OptionsGUI(Options opts) {
 		
 		super("Options de jeu");
@@ -104,8 +107,8 @@ public class OptionsGUI extends JFrame implements ActionListener {
 		gbl.setConstraints(ok, constraints);
 		pane.add(ok);
 		
-		setOptionVisibleOrdi(jouerContreOrdi.isSelected());
-		setReseauOptionVisible(reseauOk.isSelected());
+		setIAOptsVisible(jouerContreOrdi.isSelected());
+		setNetworkOptsVisible(reseauOk.isSelected());
 		
 		setContentPane(pane);
 		
@@ -115,10 +118,9 @@ public class OptionsGUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.opts = opts;
-
 	}
 	
-		
+	/** Initialisation du slider*/
 	public void initSlider() {
 		slider1.setMajorTickSpacing(4);
 		slider1.setMinorTickSpacing(1);
@@ -160,33 +162,39 @@ public class OptionsGUI extends JFrame implements ActionListener {
 				}
 				
 			} catch (NumberFormatException e) {
-				Saisie.erreurMsgOk("Erreur : le nombre de ligne et le nombre de colonnes doivent Ãªtre des entiers", "Erreur");
+				Saisie.erreurMsgOk("Options invalides : le nombre de ligne et le nombre de colonnes doivent être des entiers", "Options invalides");
 			}
 			
 		}
-		
 		else if (src == reseauOk || src == client || src == server)
-			setReseauOptionVisible(reseauOk.isSelected()); 
+			setNetworkOptsVisible(reseauOk.isSelected()); 
 		
 		else if (src == jouerContreOrdi)
-			setOptionVisibleOrdi(jouerContreOrdi.isSelected()); 
+			setIAOptsVisible(jouerContreOrdi.isSelected()); 
 	}
 	
-	public void setOptionVisibleOrdi(boolean b) {
-		ordiCommence.setEnabled(b);
-		slider1.setEnabled(b);
-		
-		reseauOk.setEnabled(!b);
+	/**
+	 * Rend les options pour le jeu solo modifiables 
+	 * @param active Booleen évaluant l'activation des paramètres du jeu solo
+	 */
+	public void setIAOptsVisible(boolean active) {
+		ordiCommence.setEnabled(active);
+		slider1.setEnabled(active);
+		reseauOk.setEnabled(!active);
 	}	
 	
-	public void setReseauOptionVisible(boolean b) {
-		server.setEnabled(b);
-		client.setEnabled(b);
+	/**
+	 * Rend les options réseau modifiables 
+	 * @param active Booleen évaluant l'activation des paramètres réseau
+	 */
+	public void setNetworkOptsVisible(boolean active) {
+		server.setEnabled(active);
+		client.setEnabled(active);
 		if (client.isSelected())
-			jIpTextField.setEnabled(b);
+			jIpTextField.setEnabled(active);
 		else
 			jIpTextField.setEnabled(false);
 		
-		jouerContreOrdi.setEnabled(!b);		
+		jouerContreOrdi.setEnabled(!active);
 	}	
 }

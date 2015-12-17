@@ -8,6 +8,7 @@ public class Serveur extends ServeurClient {
 	
 	ServerSocket ss;
 	Socket clientSocket;
+
 	
 	public Serveur(Jeu jeu) {
 		
@@ -15,15 +16,15 @@ public class Serveur extends ServeurClient {
 		
 		try {
 			ss = new ServerSocket(PORT);
-			System.out.println("J'attends qu'un client se connecte");
-			jeu.plateau.setVisible(false); // cache le jeu
+			System.out.println("En attente du client...");
+			jeu.plateau.setVisible(false);
 			clientSocket = ss.accept();
-			System.out.println("Un client s'est connectÃ©");
-			jeu.plateau.setVisible(true); // montre la fenetre jeu ? TODO
+			System.out.println("Un client s'est connecté");
+			jeu.plateau.setVisible(true);
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			
-			// Envoie des paramÃ¨tre de taille au client
+			// Envoie des paramètres de taille au client
 			out.println(jeu.opts.getNbLig());
 			out.println(jeu.opts.getNbCol());
 			

@@ -5,10 +5,14 @@ import java.net.*;
 
 public class Client extends ServeurClient {
     
-	InetAddress adr;
-	Socket socket;
+	private InetAddress adr;
+	private Socket socket;
    
-	/** Nouvelle instance Client */
+	/**
+	 * Création d'une nouvelle instance Client
+	 * @param adrServeur Adresse IP utilisée lors de la partie en réseau  
+	 * @param jeu Objet Jeu de la partie en cours
+	 */
 	public Client(String adrServeur, Jeu jeu) {
 	
 		super(jeu);
@@ -20,13 +24,13 @@ public class Client extends ServeurClient {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		}
 		catch(Exception e) {
-			System.out.println("Serveur non trouvÃ© ou erreur lors de la connexion au serveur.");
-			System.out.println("VÃ©rifiez que celui-ci existe.");
+			System.out.println("Serveur introuvable.");
+			System.out.println("Vérifiez que celui-ci existe.");
 			System.exit(-1);
 		}
 	}
 	
-	/** Fermeture de la connexion */	
+	/** Fermeture de la connexion */
 	void closeSocket() {
 	
 		try {
@@ -35,7 +39,5 @@ public class Client extends ServeurClient {
 		catch (IOException e) {
 			System.out.println("Erreur lors de la fermeture des sockets");
 		}
-		
 	}
-    	
 }

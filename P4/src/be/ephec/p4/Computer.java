@@ -1,4 +1,5 @@
 package be.ephec.p4;
+
 class Computer {
 
 	int p;
@@ -10,7 +11,10 @@ class Computer {
 	boolean joueurBase; // cf commentaire de PerdGagne
 	boolean[] forbiddenCols = new boolean[7];
 
-	// constructeur Ã  refaire si joueurBase en attribut
+	/**
+	 * Construit un objet Computer
+	 * @param niveau Difficulté
+	 */
 	public Computer(int niveau) {
 		this.p = 2 * niveau;
 		this.p2 = niveau;
@@ -18,7 +22,8 @@ class Computer {
 	
 	/**
 	 * Fait jouer l'ordinateur
-	 * @return Colonne que l'ordinateur joue
+	 * @param joueur Booleen représentant si c'est un joueur ou un ordinateur qui joue
+	 * @return Colonne que l'ordinateur a jouée
 	 */
 	public int ordiJoue(boolean joueur) {
 	
@@ -49,7 +54,6 @@ class Computer {
 					forbiddenCols[col] = true;
 				
 				matJeu[ligne][col] = 0;  // UNDO
-				
 			}
 		}
 		nbCoups--;
@@ -79,6 +83,13 @@ class Computer {
 		
 	}
 
+	
+	/** 
+	 * Evalue le statut de victoire pour la partie
+	 * @param joueur Booleen évaluant la présence d'un joueur
+	 * @param profondeur
+	 * @return 0 si aucun des deux joueurs n'est gagnant et 1 ou -1 selon le joueur qui a gagné 
+	 */
 	public int perdGagne(boolean joueur, int profondeur) {
 		
 		int ligne;
@@ -113,8 +124,8 @@ class Computer {
 					nbCoups--;
 					
 				}
-			} // fin du for
-			return 0; // pas de situation gagnante
+			}
+			return 0;
 		
 		} else {
 		
@@ -143,7 +154,7 @@ class Computer {
 						return -1;
 					
 				}
-			} // fin du for
+			}
 			//return minMax;
 			return 0;
 			
@@ -151,6 +162,12 @@ class Computer {
 
 	}
 	
+	/**
+	 * 
+	 * @param joueur
+	 * @param profondeur
+	 * @return
+	 */
 	public int miniMax(boolean joueur, int profondeur) {
 		int val = -5001;
 		if (joueur != joueurBase)
@@ -158,7 +175,8 @@ class Computer {
 		int note;
 		int ligne;
 		int col;
-		byte jVal = 1; // Variable contenant la valeur du joueur
+		// Variable contenant la valeur du joueur
+		byte jVal = 1;
 		if (joueur)
 			jVal = 2;
 		
@@ -195,7 +213,11 @@ class Computer {
 		
 	}
 	
-	// MÃ©thode renvoyant la valeur d'une position
+	/**
+	 * Evalue la position sur la grille
+	 * @param joueur Joueur en cours
+	 * @return Valeur de la position 
+	 */
 	public int evalGrille(byte joueur) {
 		int valeur = 0;
 		for (int row = 0; row < matJeu.length; row++) {
@@ -207,6 +229,13 @@ class Computer {
 		return valeur;
 	}
 	
+	/**
+	 * Evalue la condition de victoire sur base de la case 
+	 * @param row Ligne à évaluer
+	 * @param col Colonne à évaluer
+	 * @param joueur Joueur en cours
+	 * @return 
+	 */
 	public int evalCase(int row, int col, byte joueur) {
 		int valeur;
 		valeur = nbAlignVertic(row, col, joueur)
@@ -214,8 +243,8 @@ class Computer {
 			+ nbAlignSlash(row, col, joueur)
 			+ nbAlignAntiSlash(row, col, joueur);
 		
-		int oth = (- joueur) + 3; // changement de joueur : (-1)*(joueur - 2) + 1
-		byte otherJ = (byte)oth;
+		int tmp = (- joueur) + 3; // changement de joueur : (-1)*(joueur - 2) + 1
+		byte otherJ = (byte)tmp;
 		valeur = valeur
 			- nbAlignVertic(row, col, otherJ)
 			- nbAlignHoriz(row, col, otherJ)
@@ -228,6 +257,13 @@ class Computer {
 		return valeur;
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 * @param col
+	 * @param joueur
+	 * @return
+	 */
 	public int nbAlignVertic(int row, int col, byte joueur) {
 		int val = 0;
 		boolean b = true;
@@ -336,17 +372,30 @@ class Computer {
 		}
 	}
 	
-	
-	
-	public boolean joueurGagne(byte joueur, int ligneM, int colM) {  // le M majuscule indique que c'est une ligne correspondant Ã  la position dans la matrice
+	/**
+	 * Evalue la condition de victoire pour le joueur en cours
+	 * @param joueur Joueur en cours
+	 * @param ligneM Ligne correspondant à la position dans la matrice
+	 * @param colM Colonne correspondant à la position dans la matrice
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
+	public boolean joueurGagne(byte joueur, int ligneM, int colM) {
 		if (horiGagne(joueur, ligneM, colM) || vertGagne(joueur, ligneM, colM) || diag1Gagne(joueur, ligneM, colM) || diag2Gagne(joueur, ligneM, colM))
 			return true;
 		
 		return false;
 	}
 	
+	/**
+	 * Evalue la condition de victoire horizontale
+	 * @param jVal Valeur du joueur
+	 * @param ligneM Ligne correspondant à la position dans la matrice
+	 * @param colM Colonne correspondant à la position dans la matrice
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
 	public boolean horiGagne(byte jVal, int ligneM, int colM) {
-		int nbAlign = 0;  // nombre de pions qui sont alignÃ©s les uns Ã  la suite des autres
+		// Nombre de pions qui sont alignés les uns à la suite des autres
+		int nbAlign = 0;
 		int colMin = colM - 3;
 		if (colMin <= 0)
 			colMin = 0;
@@ -367,19 +416,26 @@ class Computer {
 		return false;
 	}
 	
-	public boolean vertGagne(byte jVal, int ligneM, int colM) {
-		int nbAlign = 0;  // nombre de pions qui sont alignÃ©s les uns Ã  la suite des autres
-		int ligneMin = ligneM - 3;
+	/**
+	 * Evalue la condition de victoire verticale
+	 * @param jVal Valeur du joueur
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
+	public boolean vertGagne(byte jVal, int ligne, int col) {
+		// Nombre de pions qui sont alignés les uns à la suite des autres
+		int nbAlign = 0;
+		int ligneMin = ligne - 3;
 		if (ligneMin <= 0)
 			ligneMin = 0;
 		
-		int ligneMax = ligneM + 3;
+		int ligneMax = ligne + 3;
 		if (ligneMax >= matJeu.length)
 			ligneMax = matJeu.length - 1;
 		
-		
 		for (int i = ligneMin; i <= ligneMax; i++) {
-			if (matJeu[i][colM] == jVal)
+			if (matJeu[i][col] == jVal)
 				nbAlign++;
 			else
 				nbAlign = 0;
@@ -390,32 +446,40 @@ class Computer {
 		return false;
 	}
 	
-	// Test de diagonale en forme d'anti-slash
-	public boolean diag1Gagne(byte jVal, int ligneM, int colM) {
+	/**
+	 * Evaluation de la condition de victoire de la diagonale en forme de back-slash
+	 * @param jVal Valeur du joueur
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
+	public boolean diag1Gagne(byte jVal, int ligne, int col) {
 		int nbAlign = 0;
-		int ligneMin = ligneM;
-		int ligneMax = ligneM;
-		int colMin = colM;
-		int colMax = colM;
+		int ligneMin = ligne;
+		int ligneMax = ligne;
+		int colMin = col;
+		int colMax = col;
 		
+		//Limites de l'évaluation (3 cases en bas à droite)
 		int compteur = 0;
-		while (ligneMax + 1 < matJeu.length && colMax + 1 < matJeu[0].length && compteur <= 2) {  //On va en bas Ã  droite du plateau
+		while (ligneMax + 1 < matJeu.length && colMax + 1 < matJeu[0].length && compteur <= 2) {
 			ligneMax++;
 			colMax++;
-			compteur++;   // on ne va que 3 cases en bas Ã  droite au maximum
+			compteur++;
 		}
 		
+		//Limites de l'évaluation (3 cases en haut à gauche)
 		compteur = 0;
-		while (ligneMin >= 1 && colMin >= 1 && compteur <= 2) {  //On va en haut Ã  gauche du plateau de jeu
+		while (ligneMin >= 1 && colMin >= 1 && compteur <= 2) {
 			ligneMin--;
 			colMin--;
-			compteur++;   // on ne va que 3 cases en bas Ã  droite au maximum
+			compteur++;
 		}
 		
-		ligneM = ligneMin;
-		colM = colMin;
+		ligne = ligneMin;
+		col = colMin;
 		do {
-			if (matJeu[ligneM][colM] == jVal)
+			if (matJeu[ligne][col] == jVal)
 				nbAlign++;
 			else
 				nbAlign = 0;
@@ -423,40 +487,48 @@ class Computer {
 			if (nbAlign == 4)
 				return true;
 				
-			ligneM++;
-			colM++;
+			ligne++;
+			col++;
 			
-		} while (ligneM <= ligneMax && colM <= colMax);
+		} while (ligne <= ligneMax && col <= colMax);
 		
 		return false;
 	}
 	
-	// test de diagonale en forme de slash
-	public boolean diag2Gagne(byte jVal, int ligneM, int colM) {
+	/**
+	 * Evaluation de la condition de victoire de la diagonale en forme de slash
+	 * @param jVal Valeur du joueur
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
+	public boolean diag2Gagne(byte jVal, int ligne, int col) {
 		int nbAlign = 0;
-		int ligneMin = ligneM;
-		int ligneMax = ligneM;
-		int colMin = colM;
-		int colMax = colM;
+		int ligneMin = ligne;
+		int ligneMax = ligne;
+		int colMin = col;
+		int colMax = col;
 		
+		//Limites de l'évaluation (3 cases en bas à gauche)
 		int compteur = 0;
-		while (ligneMax + 1 < matJeu.length && colMin >= 1 && compteur <= 2) {  //On va en bas Ã  gauche du plateau
+		while (ligneMax + 1 < matJeu.length && colMin >= 1 && compteur <= 2) {
 			ligneMax++;
 			colMin--;
-			compteur++;   // on ne va que 3 cases en bas Ã  droite au maximum
+			compteur++;
 		}
 		
+		//Limites de l'évaluation (3 cases en haut à droite)
 		compteur = 0;
-		while (ligneMin >= 1 && colMax + 1 < matJeu[0].length && compteur <= 2) {  //On va en haut Ã  droite du plateau de jeu
+		while (ligneMin >= 1 && colMax + 1 < matJeu[0].length && compteur <= 2) {
 			ligneMin--;
 			colMax++;
-			compteur++;   // on ne va que 3 cases en bas Ã  droite au maximum
+			compteur++;
 		}
 		
-		ligneM = ligneMax;
-		colM = colMin;
+		ligne = ligneMax;
+		col = colMin;
 		do {
-			if (matJeu[ligneM][colM] == jVal)
+			if (matJeu[ligne][col] == jVal)
 				nbAlign++;
 			else
 				nbAlign = 0;
@@ -464,21 +536,25 @@ class Computer {
 			if (nbAlign == 4)
 				return true;
 			
-			ligneM--;
-			colM++;
+			ligne--;
+			col++;
 					
-		} while (ligneM >= ligneMin && colM <= colMax);
+		} while (ligne >= ligneMin && col <= colMax);
 		
 		return false;
 	}
 	
+	/**
+	 * Recherche la ligne correspondant à la colonne sélectionnée
+	 * @param col Colonne à évaluer 
+	 * @return La ligne recherchée et -1 si la colonne est remplie et qu'aucune ligne n'a été trouvée 
+	 */
 	public int searchLine(int col) {
 		for (int i = matJeu.length - 1; i >= 0; i--) {
 			if (matJeu[i][col] == 0)
 				return i;
 		}
-		return -1; // Aucune ligne n'a Ã©tÃ© trouvÃ©e : la colonne est remplie
-		
+		return -1;
 	}
 
 }

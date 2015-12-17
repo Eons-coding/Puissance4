@@ -11,9 +11,13 @@ public class Jeu {
 	boolean joueur;		
 	int[] historique;	
 	Options opts;		
-	Computer deep;	
+	Computer ia;	
 	boolean lock;  
 	
+	/**
+	 * Cronstruction d'un nouvel objet Jeu avec ou sans options
+	 * @param optTrue Booleen évaluant la présence d'options
+	 */
 	public Jeu(boolean optTrue) {
 		if (optTrue)
 			opts = new Options(this);
@@ -21,7 +25,13 @@ public class Jeu {
 		enCours = true;
 	}
 
-	
+	/**
+	 * Evalue la condition de victoire pour le joueur en cours
+	 * @param joueur Booleen évaluant la présence d'un joueur
+	 * @param ligneM Ligne correspondant à la position dans la matrice
+	 * @param colM Colonne correspondant à la position dans la matrice
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
 	public boolean joueurGagne(boolean joueur, int ligneM, int colM) {  
 		byte jVal = 1; 
 		if (joueur)
@@ -33,19 +43,26 @@ public class Jeu {
 		return false;
 	}
 	
-	
-	public boolean horiGagne(byte jVal, int ligneM, int colM) {
+	/**
+	 * Evalue la condition de victoire horizontale
+	 * @param jVal Joueur en cours
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
+	public boolean horiGagne(byte jVal, int ligne, int col) {
+		// Nombre de pions qui sont alignés les uns à la suite des autres
 		int nbAlign = 0;  
-		int colMin = colM - 3;
+		int colMin = col - 3;
 		if (colMin <= 0)
 			colMin = 0;
 		
-		int colMax = colM + 3;
+		int colMax = col + 3;
 		if (colMax >= opts.getNbCol())
 			colMax = opts.getNbCol() - 1;
 		
 		for (int i = colMin; i <= colMax; i++) {
-			if (this.matJeu[ligneM][i] == jVal)
+			if (this.matJeu[ligne][i] == jVal)
 				nbAlign++;
 			else
 				nbAlign = 0;
@@ -56,20 +73,26 @@ public class Jeu {
 		return false;
 	}
 	
-	
-	public boolean vertGagne(byte jVal, int ligneM, int colM) {
+	/**
+	 * Evalue la condition de victoire verticale
+	 * @param jVal Joueur en cours
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
+	public boolean vertGagne(byte jVal, int ligne, int col) {
+		// Nombre de pions qui sont alignés les uns à la suite des autres
 		int nbAlign = 0;  
-		int ligneMin = ligneM - 3;
+		int ligneMin = ligne - 3;
 		if (ligneMin <= 0)
 			ligneMin = 0;
 		
-		int ligneMax = ligneM + 3;
+		int ligneMax = ligne + 3;
 		if (ligneMax >= opts.getNbLig())
 			ligneMax = opts.getNbLig() - 1;
 		
-		
 		for (int i = ligneMin; i <= ligneMax; i++) {
-			if (this.matJeu[i][colM] == jVal)
+			if (this.matJeu[i][col] == jVal)
 				nbAlign++;
 			else
 				nbAlign = 0;
@@ -80,7 +103,13 @@ public class Jeu {
 		return false;
 	}
 	
-	
+	/**
+	 * Evaluation de la condition de victoire de la diagonale en forme de back-slash
+	 * @param jVal Joueur en cours
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
 	public boolean diag1Gagne(byte jVal, int ligneM, int colM) {
 		int nbAlign = 0;
 		int ligneMin = ligneM;
@@ -88,6 +117,7 @@ public class Jeu {
 		int colMin = colM;
 		int colMax = colM;
 		
+		//Limites de l'évaluation (3 cases en bas à droite)
 		int compteur = 0;
 		while (ligneMax + 1 < opts.getNbLig() && colMax + 1 < opts.getNbCol() && compteur <= 2) {  
 			ligneMax++;
@@ -95,6 +125,7 @@ public class Jeu {
 			compteur++;   
 		}
 		
+		//Limites de l'évaluation (3 cases en haut à gauche)
 		compteur = 0;
 		while (ligneMin >= 1 && colMin >= 1 && compteur <= 2) {  
 			ligneMin--;
@@ -121,6 +152,13 @@ public class Jeu {
 		return false;
 	}
 	
+	/**
+	 * Evaluation de la condition de victoire de la diagonale en forme de slash
+	 * @param jVal Joueur en cours
+	 * @param ligne Ligne correspondant à la position dans la grille
+	 * @param col Colonne correspondant à la position dans la grille
+	 * @return True si la condition de victoire est remplie et False sinon
+	 */
 	public boolean diag2Gagne(byte jVal, int ligneM, int colM) {
 		int nbAlign = 0;
 		int ligneMin = ligneM;
@@ -128,6 +166,7 @@ public class Jeu {
 		int colMin = colM;
 		int colMax = colM;
 		
+		//Limites de l'évaluation (3 cases en bas à gauche)
 		int compteur = 0;
 		while (ligneMax + 1 < opts.getNbLig() && colMin >= 1 && compteur <= 2) {  
 			ligneMax++;
@@ -135,6 +174,7 @@ public class Jeu {
 			compteur++;   
 		}
 		
+		//Limites de l'évaluation (3 cases en haut à droite)
 		compteur = 0;
 		while (ligneMin >= 1 && colMax + 1 < opts.getNbCol() && compteur <= 2) {  
 			ligneMin--;
@@ -161,7 +201,10 @@ public class Jeu {
 		return false;
 	}
 	
-
+	/**
+	 * Traitement de l'action Jouer sélectionnée par le joueur 
+	 * @param col Colonne sélectionnée pour être jouée
+	 */
 	public void jouer(int col) {
 		boolean coupValable;	
 		int ligne = 0;		
@@ -176,16 +219,21 @@ public class Jeu {
 		
 	}
 
+	/**
+	 * Evaluation de la condition de jouabilité
+	 * @param ligne Ligne à vérifier
+	 * @param col Colonne à vérifier
+	 */
 	public void validerCoup(int ligne, int col) {
 		
 		if (!joueur) {
 			this.matJeu[ligne - 1][col - 1] = 1;  
-			Case cc = (Case)plateau.pane.getComponent((opts.getNbCol()) * (ligne - 1) + (col - 1));
-			cc.modifierVal(1);
+			Case c = (Case)plateau.pane.getComponent((opts.getNbCol()) * (ligne - 1) + (col - 1));
+			c.modifierVal(1);
 		} else {
 			this.matJeu[ligne - 1][col - 1] = 2;  
-			Case cc = (Case)plateau.pane.getComponent((opts.getNbCol()) * (ligne - 1) + (col - 1));
-			cc.modifierVal(2);
+			Case c = (Case)plateau.pane.getComponent((opts.getNbCol()) * (ligne - 1) + (col - 1));
+			c.modifierVal(2);
 		}
 
 		boolean gagne = this.joueurGagne(joueur, ligne - 1, col - 1);
@@ -194,16 +242,16 @@ public class Jeu {
 				networkPlay(col, false);
 			enCours = false; 
 			if (!joueur)
-				Saisie.infoMsgOk("Le joueur 1 a gagne", "Bravo");
+				Saisie.infoMsgOk("Le joueur 1 a gagné", "Partie terminée");
 			else
-				Saisie.infoMsgOk("Le joueur 2 a gagne", "Bravo");
+				Saisie.infoMsgOk("Le joueur 2 a gagné", "Partie terminée");
 		}
 		
 		nbCoups++;  
 		if (nbCoups >= opts.getNbLig() * opts.getNbCol() && !gagne) {
 			if (opts.resOn)
 				networkPlay(col, false);
-			Saisie.infoMsgOk("Aucun des 2 joueurs n'a su gagner... : partie nulle", "Partie nulle");
+			Saisie.infoMsgOk("Aucun des 2 joueurs n'a su gagner. Partie nulle", "Partie nulle");
 			enCours = false;  
 		}
 		
@@ -218,12 +266,12 @@ public class Jeu {
 			plateau.statusBar.setIcon(plateau.pionR);
 		}
 		if (!enCours) {		
-			int ok = Saisie.question_ouinon("La partie est terminee, voulez-vous en faire une nouvelle ?", "Nouvelle partie");
+			int ok = Saisie.question_ouinon("La partie est terminée, voulez-vous en faire une nouvelle ?", "Nouvelle partie");
 			if (ok == 0)
 				nouveauJeu();
 		}
 		else {
-			if (opts.jouerContreOrdi && joueur != opts.ordiCommence)
+			if (opts.ia && joueur != opts.ordiCommence)
 				this.ordiJoue();
 			
 			if (opts.resOn)
@@ -232,31 +280,42 @@ public class Jeu {
 			
 				
 	}
-	
+	/** Lancement d'une nouvelle partie grâce à l'objet Jeu*/
 	public static void nouveauJeu() {
 		Jeu j = new Jeu(true);
 	}
 	
+	/**
+	 * Evaluation de la validité du coup joué
+	 * @param ligne Ligne à évaluer
+	 * @param col Colonne à évaluer
+	 * @return True si le coup est valide et False sinon
+	 */
 	public boolean coupValable(int ligne, int col) {
 		
 		if (ligne == -1) {
-			Saisie.erreurMsgOk("Vous ne pouvez pas jouer ce coup : la colonne est remplie", "Coup invalide");
+			Saisie.erreurMsgOk("Coup invalide : la colonne est remplie", "Coup invalide");
 			return false;
 		}
 		
 		if (!enCours) {
-			Saisie.erreurMsgOk("La partie est terminÃ©e, vous ne pouvez plus jouer", "Erreur : partie terminï¿½e");
+			Saisie.erreurMsgOk("La partie est terminée, vous ne pouvez plus jouer", "Erreur : partie terminée");
 			return false;
 		}
 		
 		if (lock) {
-			Saisie.erreurMsgOk("Ce n'est pas Ã  vous de jouer", "Erreur");
+			Saisie.erreurMsgOk("Ce n'est pas à vous de jouer", "Tour adverse");
 			return false;
 		}
 		
 		return true;
 	}
-
+	
+	/**
+	 * Recherche la ligne correspondant à la colonne sélectionnée
+	 * @param col Colonne à évaluer 
+	 * @return La ligne recherchée et -1 si la colonne est remplie et qu'aucune ligne n'a été trouvée 
+	 */
 	public int searchLine(int col) {
 		for (int i = opts.getNbLig(); i >= 1; i--) {
 			if (matJeu[i - 1][col - 1] == 0)
@@ -265,24 +324,28 @@ public class Jeu {
 		return -1; 
 	}
 	
+	/** Méthode lancée au tour de l'ordinateur*/
 	public void ordiJoue() {
-		plateau.statusBar.setText("L'ordinateur rÃ©flÃ©chit : patientez");
+		plateau.statusBar.setText("L'ordinateur réfléchit : patientez...");
 		plateau.repaint();
-		deep.nbCoups = nbCoups;
-		deep.joueurBase = joueur; 
-		deep.matJeu = new byte[opts.getNbLig()][opts.getNbCol()];
-		deep.matJeu2 = new byte[opts.getNbLig()][opts.getNbCol()];
+		ia.nbCoups = nbCoups;
+		ia.joueurBase = joueur; 
+		ia.matJeu = new byte[opts.getNbLig()][opts.getNbCol()];
+		ia.matJeu2 = new byte[opts.getNbLig()][opts.getNbCol()];
 		for (int i = 0; i < opts.getNbLig(); i++) {
 			for (int j = 0; j < opts.getNbCol(); j++) {
-				deep.matJeu[i][j] = matJeu[i][j];
-				deep.matJeu2[i][j] = matJeu[i][j];
+				ia.matJeu[i][j] = matJeu[i][j];
+				ia.matJeu2[i][j] = matJeu[i][j];
 			}
 		}	
-		
-		jouer(deep.ordiJoue(joueur));
-		
+		jouer(ia.ordiJoue(joueur));
 	}
 
+	/**
+	 * Méthode qui synchronise les tours dans le réseau 
+	 * @param col Colonne sélectionnée
+	 * @param wait Token permettant de synchroniser les tours des joueurs
+	 */
 	public void networkPlay(int col, boolean wait) {
 		
 		if (!wait) {
@@ -295,12 +358,10 @@ public class Jeu {
 			NetworkThread nt = new NetworkThread(opts.sc, this);
 			nt.start();
 		}
-		
 	}
 	
-	public static void main(String[] args) {
-		
+	/** Lancement du Puissance 4*/
+	public static void main(String args[]) {
 		Jeu partie = new Jeu(true);
-		
 	}
 }
