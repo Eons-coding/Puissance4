@@ -2,7 +2,10 @@ package be.ephec.p4;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-
+/**
+*
+* @author  de Hemptinne Quentin, Dechamps Xavier, Barata Jorge
+*/
 public class Grille extends JFrame implements MouseListener, ActionListener, WindowListener {
 	static int nbGrilles; // Contient le nombre de fenetres actuellement ouvertes
 	
@@ -22,8 +25,8 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
     
 	/**
 	 * Construction de la grille de jeu
-	 * @param nbRow Nombre de lignes à créer
-	 * @param nbCol Nombre de colonnes à créer
+	 * @param nbRow Nombre de lignes ï¿½ crï¿½er
+	 * @param nbCol Nombre de colonnes ï¿½ crï¿½er
 	 * @param jeu Objet Jeu en cours
 	 */
 	public Grille(int nbRow, int nbCol, Jeu jeu) {
@@ -61,9 +64,9 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 	}
 	
 	/**
-	 * Ajout des lignes et des colonnes à la grille de jeu	
-	 * @param nbRow Nombre de lignes à créer
-	 * @param nbCol Nombre de colonnes à créer
+	 * Ajout des lignes et des colonnes ï¿½ la grille de jeu	
+	 * @param nbRow Nombre de lignes ï¿½ crï¿½er
+	 * @param nbCol Nombre de colonnes ï¿½ crï¿½er
 	 * @param jeu Objet Jeu en cours
 	 */
 	public void makeCells(int nbRow, int nbCol, Jeu jeu) {
@@ -81,7 +84,7 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 
 	}
 	
-	/** Modification de la couleur de la case où le jeton sera joué*/
+	/** Modification de la couleur de la case oï¿½ le jeton sera jouï¿½*/
 	public void mouseEntered(MouseEvent evt) {
 		Case src = (Case)evt.getSource();
 		int col = src.getCol();
@@ -93,7 +96,7 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 		}
 	}
 
-	/** Modification de la couleur de la case où le jeton sera joué*/
+	/** Modification de la couleur de la case oï¿½ le jeton sera jouï¿½*/
 	public void mouseExited(MouseEvent evt) {
 		Case src = (Case)evt.getSource();
 		int col = src.getCol();
@@ -105,7 +108,7 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 		}
 	}
 	
-	/** Traitement de la colonne sélectionnée par le joueur*/
+	/** Traitement de la colonne sï¿½lectionnï¿½e par le joueur*/
 	public void mousePressed(MouseEvent evt) {
 		Case src = (Case)evt.getSource();
 		src.getJeu().jouer(src.getCol());
@@ -115,14 +118,14 @@ public class Grille extends JFrame implements MouseListener, ActionListener, Win
 		
 	}
 	
-	/** Traitement de l'action sélectionnée par le joueur*/
+	/** Traitement de l'action sï¿½lectionnï¿½e par le joueur*/
 	public void actionPerformed(ActionEvent actionEvent) {
 		JButton src = (JButton)actionEvent.getSource();
 		if (src == comput) {
 			Case c = (Case)this.pane.getComponent(0);
 			c.getJeu().ordiJoue();
 		}
-		// Amélioration possible: UNDO
+		// Amï¿½lioration possible: UNDO
 	}
 	
 	public void windowActivated(java.awt.event.WindowEvent windowEvent) {
