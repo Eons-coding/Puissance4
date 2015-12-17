@@ -37,9 +37,9 @@ abstract class ServeurClient {
 	}
 	
 	public void envoyerCoup(int col) {
-		System.out.println("Le coup va être transmit");
+		System.out.println("Le coup va etre transmit");
 		out.println(col);
-		System.out.println("Le coup a été transmit");
+		System.out.println("Le coup a ete transmit");
 	}
 		
 	abstract void closeSocket();
