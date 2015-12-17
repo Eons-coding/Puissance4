@@ -11,7 +11,7 @@ public class Options {
 	Jeu jeu;
 	
 	/**
-	 * Construction de l'objet Options sans options particulières
+	 * Construction de l'objet Options sans options particuliï¿½res
 	 * @param j Objet Jeu en cours
 	 */
 	public Options(Jeu j) {
@@ -22,8 +22,8 @@ public class Options {
 	
 	/**
 	 * Construction de l'objet Options avec options
-	 * @param nbLig Nombre de lignes à créer
-	 * @param nbCol Nombre de colonnes à créer
+	 * @param nbLig Nombre de lignes ï¿½ crï¿½er
+	 * @param nbCol Nombre de colonnes ï¿½ crï¿½er
 	 * @param jeu Objet Jeu en cours
 	 */
 	public Options(int nbLig, int nbCol, Jeu jeu) {
@@ -33,9 +33,9 @@ public class Options {
 	
 	/**
 	 * Mise en place de la taille du plateau de jeu
-	 * @param nbLig Nombre de lignes à créer
-	 * @param nbCol Nombre de colonnes à créer
-	 * @param initSize Booleen permettant la création du plateau de jeu
+	 * @param nbLig Nombre de lignes ï¿½ crï¿½er
+	 * @param nbCol Nombre de colonnes ï¿½ crï¿½er
+	 * @param initSize Booleen permettant la crï¿½ation du plateau de jeu
 	 */
 	public void setSize(int nbLig, int nbCol, boolean initSize) {
 		this.nbLig = nbLig;
@@ -45,9 +45,9 @@ public class Options {
 	}
 	
 	/**
-	 * Création du plateau de jeu
-	 * @param nbLig Nombre de ligne à créer
-	 * @param nbCol Nombre de colonnes à créer
+	 * Crï¿½ation du plateau de jeu
+	 * @param nbLig Nombre de ligne ï¿½ crï¿½er
+	 * @param nbCol Nombre de colonnes ï¿½ crï¿½er
 	 */
 	public void initSize(int nbLig, int nbCol) {
 		jeu.plateau = new Grille(nbLig, nbCol, jeu);
@@ -58,8 +58,8 @@ public class Options {
 	
 	/**
 	 * Initialisation de l'IA adverse
-	 * @param ia Booleen évaluant la présence d'un ordinateur en tant qu'adversaire 
-	 * @param ordiCommence Booleen évaluant si l'ordinateur commence en premier
+	 * @param ia Booleen ï¿½valuant la prï¿½sence d'un ordinateur en tant qu'adversaire 
+	 * @param ordiCommence Booleen ï¿½valuant si l'ordinateur commence en premier
 	 * @param diff 
 	 */
 	public void initOrdi(boolean ia, boolean ordiCommence, int diff) {
@@ -71,9 +71,9 @@ public class Options {
 	}
 	
 	/**
-	 * Initialisation du réseau
-	 * @param serveur Booleen évaluant la présence d'un serveur
-	 * @param ip Adresse IP liée au serveur que l'on souhaite atteindre
+	 * Initialisation du rï¿½seau
+	 * @param serveur Booleen ï¿½valuant la prï¿½sence d'un serveur
+	 * @param ip Adresse IP liï¿½e au serveur que l'on souhaite atteindre
 	 */
 	public void initReseau(boolean serveur, String ip) {
 		try {
@@ -105,7 +105,7 @@ public class Options {
 			}
 		}
 		catch(Exception e) {
-			System.out.println("Erreur lors de création du client ou du serveur");
+			System.out.println("Erreur lors de creation du client ou du serveur");
 		}
 	}
 	

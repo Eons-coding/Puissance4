@@ -269,7 +269,7 @@ public class Jeu {
 			plateau.statusBar.setIcon(plateau.pionR);
 		}
 		if (!enCours) {		
-			int ok = Saisie.question_ouinon("La partie est termin�e, voulez-vous en faire une nouvelle ?", "Nouvelle partie");
+			int ok = Saisie.question_ouinon("La partie est terminee, voulez-vous en faire une nouvelle ?", "Nouvelle partie");
 			if (ok == 0)
 				nouveauJeu();
 		}

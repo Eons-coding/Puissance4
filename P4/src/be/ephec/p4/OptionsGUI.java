@@ -43,8 +43,8 @@ public class OptionsGUI extends JFrame implements ActionListener {
 	JButton ok = new JButton("Ok");
 	
 	/**
-	 * Construction de la fenêtre d'options
-	 * @param opts Ojet Options contenant les options souhaitées à l'initialisation
+	 * Construction de la fenï¿½tre d'options
+	 * @param opts Ojet Options contenant les options souhaitï¿½es ï¿½ l'initialisation
 	 */
 	public OptionsGUI(Options opts) {
 		
@@ -162,7 +162,7 @@ public class OptionsGUI extends JFrame implements ActionListener {
 				}
 				
 			} catch (NumberFormatException e) {
-				Saisie.erreurMsgOk("Options invalides : le nombre de ligne et le nombre de colonnes doivent être des entiers", "Options invalides");
+				Saisie.erreurMsgOk("Options invalides : le nombre de ligne et le nombre de colonnes doivent etre des entiers", "Options invalides");
 			}
 			
 		}
@@ -175,7 +175,7 @@ public class OptionsGUI extends JFrame implements ActionListener {
 	
 	/**
 	 * Rend les options pour le jeu solo modifiables 
-	 * @param active Booleen évaluant l'activation des paramètres du jeu solo
+	 * @param active Booleen ï¿½valuant l'activation des paramï¿½tres du jeu solo
 	 */
 	public void setIAOptsVisible(boolean active) {
 		ordiCommence.setEnabled(active);
@@ -184,8 +184,8 @@ public class OptionsGUI extends JFrame implements ActionListener {
 	}	
 	
 	/**
-	 * Rend les options réseau modifiables 
-	 * @param active Booleen évaluant l'activation des paramètres réseau
+	 * Rend les options rï¿½seau modifiables 
+	 * @param active Booleen ï¿½valuant l'activation des paramï¿½tres rï¿½seau
 	 */
 	public void setNetworkOptsVisible(boolean active) {
 		server.setEnabled(active);
