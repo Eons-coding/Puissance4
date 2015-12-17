@@ -11,7 +11,7 @@ public class Options {
 	Jeu jeu;
 	
 	/**
-	 * Construction de l'objet Options sans options particuli�res
+	 * Construction de l'objet Options sans options particuliares
 	 * @param j Objet Jeu en cours
 	 */
 	public Options(Jeu j) {
@@ -22,8 +22,8 @@ public class Options {
 	
 	/**
 	 * Construction de l'objet Options avec options
-	 * @param nbLig Nombre de lignes � cr�er
-	 * @param nbCol Nombre de colonnes � cr�er
+	 * @param nbLig Nombre de lignes a creer
+	 * @param nbCol Nombre de colonnes a creer
 	 * @param jeu Objet Jeu en cours
 	 */
 	public Options(int nbLig, int nbCol, Jeu jeu) {
@@ -33,9 +33,9 @@ public class Options {
 	
 	/**
 	 * Mise en place de la taille du plateau de jeu
-	 * @param nbLig Nombre de lignes � cr�er
-	 * @param nbCol Nombre de colonnes � cr�er
-	 * @param initSize Booleen permettant la cr�ation du plateau de jeu
+	 * @param nbLig Nombre de lignes a creer
+	 * @param nbCol Nombre de colonnes a creer
+	 * @param initSize Booleen permettant la creation du plateau de jeu
 	 */
 	public void setSize(int nbLig, int nbCol, boolean initSize) {
 		this.nbLig = nbLig;
@@ -45,9 +45,9 @@ public class Options {
 	}
 	
 	/**
-	 * Cr�ation du plateau de jeu
-	 * @param nbLig Nombre de ligne � cr�er
-	 * @param nbCol Nombre de colonnes � cr�er
+	 * Creation du plateau de jeu
+	 * @param nbLig Nombre de ligne a creer
+	 * @param nbCol Nombre de colonnes a creer
 	 */
 	public void initSize(int nbLig, int nbCol) {
 		jeu.plateau = new Grille(nbLig, nbCol, jeu);
@@ -58,8 +58,8 @@ public class Options {
 	
 	/**
 	 * Initialisation de l'IA adverse
-	 * @param ia Booleen �valuant la pr�sence d'un ordinateur en tant qu'adversaire 
-	 * @param ordiCommence Booleen �valuant si l'ordinateur commence en premier
+	 * @param ia Booleen avaluant la presence d'un ordinateur en tant qu'adversaire 
+	 * @param ordiCommence Booleen avaluant si l'ordinateur commence en premier
 	 * @param diff 
 	 */
 	public void initOrdi(boolean ia, boolean ordiCommence, int diff) {
@@ -71,9 +71,9 @@ public class Options {
 	}
 	
 	/**
-	 * Initialisation du r�seau
-	 * @param serveur Booleen �valuant la pr�sence d'un serveur
-	 * @param ip Adresse IP li�e au serveur que l'on souhaite atteindre
+	 * Initialisation du raseau
+	 * @param serveur Booleen avaluant la presence d'un serveur
+	 * @param ip Adresse IP liee au serveur que l'on souhaite atteindre
 	 */
 	public void initReseau(boolean serveur, String ip) {
 		try {

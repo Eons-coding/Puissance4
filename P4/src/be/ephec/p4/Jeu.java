@@ -19,7 +19,7 @@ public class Jeu {
 	
 	/**
 	 * Cronstruction d'un nouvel objet Jeu avec ou sans options
-	 * @param optTrue Booleen évaluant la présence d'options
+	 * @param optTrue Booleen evaluant la presence d'options
 	 */
 	public Jeu(boolean optTrue) {
 		if (optTrue)
@@ -30,9 +30,9 @@ public class Jeu {
 
 	/**
 	 * Evalue la condition de victoire pour le joueur en cours
-	 * @param joueur Booleen évaluant la présence d'un joueur
-	 * @param ligneM Ligne correspondant à la position dans la matrice
-	 * @param colM Colonne correspondant à la position dans la matrice
+	 * @param joueur Booleen evaluant la presence d'un joueur
+	 * @param ligneM Ligne correspondant a la position dans la matrice
+	 * @param colM Colonne correspondant a la position dans la matrice
 	 * @return True si la condition de victoire est remplie et False sinon
 	 */
 	public boolean joueurGagne(boolean joueur, int ligneM, int colM) {  
@@ -49,12 +49,12 @@ public class Jeu {
 	/**
 	 * Evalue la condition de victoire horizontale
 	 * @param jVal Joueur en cours
-	 * @param ligne Ligne correspondant à la position dans la grille
-	 * @param col Colonne correspondant à la position dans la grille
+	 * @param ligne Ligne correspondant a la position dans la grille
+	 * @param col Colonne correspondant a la position dans la grille
 	 * @return True si la condition de victoire est remplie et False sinon
 	 */
 	public boolean horiGagne(byte jVal, int ligne, int col) {
-		// Nombre de pions qui sont alignés les uns à la suite des autres
+		// Nombre de pions qui sont alignes les uns a la suite des autres
 		int nbAlign = 0;  
 		int colMin = col - 3;
 		if (colMin <= 0)
@@ -79,12 +79,12 @@ public class Jeu {
 	/**
 	 * Evalue la condition de victoire verticale
 	 * @param jVal Joueur en cours
-	 * @param ligne Ligne correspondant à la position dans la grille
-	 * @param col Colonne correspondant à la position dans la grille
+	 * @param ligne Ligne correspondant a la position dans la grille
+	 * @param col Colonne correspondant a la position dans la grille
 	 * @return True si la condition de victoire est remplie et False sinon
 	 */
 	public boolean vertGagne(byte jVal, int ligne, int col) {
-		// Nombre de pions qui sont alignés les uns à la suite des autres
+		// Nombre de pions qui sont alignes les uns a la suite des autres
 		int nbAlign = 0;  
 		int ligneMin = ligne - 3;
 		if (ligneMin <= 0)
@@ -109,8 +109,8 @@ public class Jeu {
 	/**
 	 * Evaluation de la condition de victoire de la diagonale en forme de back-slash
 	 * @param jVal Joueur en cours
-	 * @param ligne Ligne correspondant à la position dans la grille
-	 * @param col Colonne correspondant à la position dans la grille
+	 * @param ligne Ligne correspondant a la position dans la grille
+	 * @param col Colonne correspondant a la position dans la grille
 	 * @return True si la condition de victoire est remplie et False sinon
 	 */
 	public boolean diag1Gagne(byte jVal, int ligneM, int colM) {
@@ -120,7 +120,7 @@ public class Jeu {
 		int colMin = colM;
 		int colMax = colM;
 		
-		//Limites de l'évaluation (3 cases en bas à droite)
+		//Limites de l'evaluation (3 cases en bas a droite)
 		int compteur = 0;
 		while (ligneMax + 1 < opts.getNbLig() && colMax + 1 < opts.getNbCol() && compteur <= 2) {  
 			ligneMax++;
@@ -128,7 +128,7 @@ public class Jeu {
 			compteur++;   
 		}
 		
-		//Limites de l'évaluation (3 cases en haut à gauche)
+		//Limites de l'evaluation (3 cases en haut a gauche)
 		compteur = 0;
 		while (ligneMin >= 1 && colMin >= 1 && compteur <= 2) {  
 			ligneMin--;
@@ -158,8 +158,8 @@ public class Jeu {
 	/**
 	 * Evaluation de la condition de victoire de la diagonale en forme de slash
 	 * @param jVal Joueur en cours
-	 * @param ligne Ligne correspondant à la position dans la grille
-	 * @param col Colonne correspondant à la position dans la grille
+	 * @param ligne Ligne correspondant a la position dans la grille
+	 * @param col Colonne correspondant a la position dans la grille
 	 * @return True si la condition de victoire est remplie et False sinon
 	 */
 	public boolean diag2Gagne(byte jVal, int ligneM, int colM) {
@@ -169,7 +169,7 @@ public class Jeu {
 		int colMin = colM;
 		int colMax = colM;
 		
-		//Limites de l'évaluation (3 cases en bas à gauche)
+		//Limites de l'evaluation (3 cases en bas a gauche)
 		int compteur = 0;
 		while (ligneMax + 1 < opts.getNbLig() && colMin >= 1 && compteur <= 2) {  
 			ligneMax++;
@@ -177,7 +177,7 @@ public class Jeu {
 			compteur++;   
 		}
 		
-		//Limites de l'évaluation (3 cases en haut à droite)
+		//Limites de l'evaluation (3 cases en haut a droite)
 		compteur = 0;
 		while (ligneMin >= 1 && colMax + 1 < opts.getNbCol() && compteur <= 2) {  
 			ligneMin--;
@@ -205,8 +205,8 @@ public class Jeu {
 	}
 	
 	/**
-	 * Traitement de l'action Jouer sélectionnée par le joueur 
-	 * @param col Colonne sélectionnée pour être jouée
+	 * Traitement de l'action Jouer selectionnee par le joueur 
+	 * @param col Colonne selectionnee pour etre jouee
 	 */
 	public void jouer(int col) {
 		boolean coupValable;	
@@ -223,9 +223,9 @@ public class Jeu {
 	}
 
 	/**
-	 * Evaluation de la condition de jouabilité
-	 * @param ligne Ligne à vérifier
-	 * @param col Colonne à vérifier
+	 * Evaluation de la condition de jouabilite
+	 * @param ligne Ligne a verifier
+	 * @param col Colonne a verifier
 	 */
 	public void validerCoup(int ligne, int col) {
 		
@@ -245,9 +245,9 @@ public class Jeu {
 				networkPlay(col, false);
 			enCours = false; 
 			if (!joueur)
-				Saisie.infoMsgOk("Le joueur 1 a gagné", "Partie terminée");
+				Saisie.infoMsgOk("Le joueur 1 a gagne", "Partie terminee");
 			else
-				Saisie.infoMsgOk("Le joueur 2 a gagné", "Partie terminée");
+				Saisie.infoMsgOk("Le joueur 2 a gagne", "Partie terminee");
 		}
 		
 		nbCoups++;  
@@ -269,7 +269,7 @@ public class Jeu {
 			plateau.statusBar.setIcon(plateau.pionR);
 		}
 		if (!enCours) {		
-			int ok = Saisie.question_ouinon("La partie est terminee, voulez-vous en faire une nouvelle ?", "Nouvelle partie");
+			int ok = Saisie.question_ouinon("La partie est termin�e, voulez-vous en faire une nouvelle ?", "Nouvelle partie");
 			if (ok == 0)
 				nouveauJeu();
 		}
@@ -283,15 +283,15 @@ public class Jeu {
 			
 				
 	}
-	/** Lancement d'une nouvelle partie grâce à l'objet Jeu*/
+	/** Lancement d'une nouvelle partie grace a l'objet Jeu*/
 	public static void nouveauJeu() {
 		Jeu j = new Jeu(true);
 	}
 	
 	/**
-	 * Evaluation de la validité du coup joué
-	 * @param ligne Ligne à évaluer
-	 * @param col Colonne à évaluer
+	 * Evaluation de la validite du coup joue
+	 * @param ligne Ligne a evaluer
+	 * @param col Colonne a evaluer
 	 * @return True si le coup est valide et False sinon
 	 */
 	public boolean coupValable(int ligne, int col) {
@@ -302,12 +302,12 @@ public class Jeu {
 		}
 		
 		if (!enCours) {
-			Saisie.erreurMsgOk("La partie est terminée, vous ne pouvez plus jouer", "Erreur : partie terminée");
+			Saisie.erreurMsgOk("La partie est terminee, vous ne pouvez plus jouer", "Erreur : partie terminee");
 			return false;
 		}
 		
 		if (lock) {
-			Saisie.erreurMsgOk("Ce n'est pas à vous de jouer", "Tour adverse");
+			Saisie.erreurMsgOk("Ce n'est pas a vous de jouer", "Tour adverse");
 			return false;
 		}
 		
@@ -315,9 +315,9 @@ public class Jeu {
 	}
 	
 	/**
-	 * Recherche la ligne correspondant à la colonne sélectionnée
-	 * @param col Colonne à évaluer 
-	 * @return La ligne recherchée et -1 si la colonne est remplie et qu'aucune ligne n'a été trouvée 
+	 * Recherche la ligne correspondant a la colonne selectionnee
+	 * @param col Colonne a evaluer 
+	 * @return La ligne recherchee et -1 si la colonne est remplie et qu'aucune ligne n'a ete trouvee 
 	 */
 	public int searchLine(int col) {
 		for (int i = opts.getNbLig(); i >= 1; i--) {
@@ -327,9 +327,9 @@ public class Jeu {
 		return -1; 
 	}
 	
-	/** M�thode lancée au tour de l'ordinateur*/
+	/** M�thode lancee au tour de l'ordinateur*/
 	public void ordiJoue() {
-		plateau.statusBar.setText("L'ordinateur réfléchit : patientez...");
+		plateau.statusBar.setText("L'ordinateur reflechit : patientez...");
 		plateau.repaint();
 		ia.nbCoups = nbCoups;
 		ia.joueurBase = joueur; 
@@ -345,8 +345,8 @@ public class Jeu {
 	}
 
 	/**
-	 * Méthode qui synchronise les tours dans le réseau 
-	 * @param col Colonne sélectionnée
+	 * Methode qui synchronise les tours dans le reseau 
+	 * @param col Colonne selectionnee
 	 * @param wait Token permettant de synchroniser les tours des joueurs
 	 */
 	public void networkPlay(int col, boolean wait) {

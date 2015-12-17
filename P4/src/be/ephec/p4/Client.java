@@ -9,8 +9,8 @@ public class Client extends ServeurClient {
 	private Socket socket;
    
 	/**
-	 * Création d'une nouvelle instance Client
-	 * @param adrServeur Adresse IP utilisée lors de la partie en réseau  
+	 * Creation d'une nouvelle instance Client
+	 * @param adrServeur Adresse IP utilisee lors de la partie en reseau  
 	 * @param jeu Objet Jeu de la partie en cours
 	 */
 	public Client(String adrServeur, Jeu jeu) {
@@ -25,7 +25,7 @@ public class Client extends ServeurClient {
 		}
 		catch(Exception e) {
 			System.out.println("Serveur introuvable.");
-			System.out.println("Vérifiez que celui-ci existe.");
+			System.out.println("Verifiez que celui-ci existe.");
 			System.exit(-1);
 		}
 	}

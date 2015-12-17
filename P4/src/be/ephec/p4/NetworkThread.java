@@ -7,8 +7,8 @@ public class NetworkThread extends Thread {
 	ServeurClient sc;
 	
 	/**
-	 * Création du Thread pour le jeu en réseau
-	 * @param sc Objet ServeurClient pour la communication sur le réseau
+	 * Creation du Thread pour le jeu en reseau
+	 * @param sc Objet ServeurClient pour la communication sur le reseau
 	 * @param j Objet Jeu en cours
 	 */
 	public NetworkThread(ServeurClient sc, Jeu j) {

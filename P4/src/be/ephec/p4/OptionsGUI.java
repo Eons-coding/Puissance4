@@ -5,12 +5,9 @@ import java.awt.event.*;
 
 /*
  * OptionsGUI.java
- *
- *
  */
 
 /**
- *
  * @author  de Hemptinne Quentin, Dechamps Xavier, Barata Jorge
  */
 
@@ -43,8 +40,8 @@ public class OptionsGUI extends JFrame implements ActionListener {
 	JButton ok = new JButton("Ok");
 	
 	/**
-	 * Construction de la fen�tre d'options
-	 * @param opts Ojet Options contenant les options souhait�es � l'initialisation
+	 * Construction de la fenetre d'options
+	 * @param opts Ojet Options contenant les options souhaitees a l'initialisation
 	 */
 	public OptionsGUI(Options opts) {
 		
@@ -175,7 +172,7 @@ public class OptionsGUI extends JFrame implements ActionListener {
 	
 	/**
 	 * Rend les options pour le jeu solo modifiables 
-	 * @param active Booleen �valuant l'activation des param�tres du jeu solo
+	 * @param active Booleen evaluant l'activation des parametres du jeu solo
 	 */
 	public void setIAOptsVisible(boolean active) {
 		ordiCommence.setEnabled(active);
@@ -184,8 +181,8 @@ public class OptionsGUI extends JFrame implements ActionListener {
 	}	
 	
 	/**
-	 * Rend les options r�seau modifiables 
-	 * @param active Booleen �valuant l'activation des param�tres r�seau
+	 * Rend les options reseau modifiables 
+	 * @param active Booleen evaluant l'activation des parametres reseau
 	 */
 	public void setNetworkOptsVisible(boolean active) {
 		server.setEnabled(active);

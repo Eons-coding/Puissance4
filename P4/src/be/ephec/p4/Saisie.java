@@ -5,9 +5,9 @@ import javax.swing.*;
 public class Saisie {
 	/**
 	 * Lecture d'un entier 
-	 * @param message Texte affich� dans le contenu de la fen�tre
-	 * @param titre Texte affich� dans l'en-t�te de la fen�tre
-	 * @return L'entier lu par le fen�tre
+	 * @param message Texte affiche dans le contenu de la fenetre
+	 * @param titre Texte affiche dans l'en-tete de la fenetre
+	 * @return L'entier lu par le fenetre
 	 */
 	public static int lire_entier(String message, String titre) {
 		String valeur;
@@ -24,9 +24,9 @@ public class Saisie {
 	
 	/**
 	 * Affichage d'une question
-	 * @param message Texte affich� dans le contenu de la fen�tre
-	 * @param titre Texte affich� dans l'en-t�te de la fen�tre
-	 * @return L'entier lu par le fen�tre
+	 * @param message Texte affiche dans le contenu de la fenetre
+	 * @param titre Texte affiche dans l'en-tete de la fenetre
+	 * @return L'entier lu par le fenetre
 	 */
 	public static int question_ouinon(String message, String titre) {
 		int val = JOptionPane.showConfirmDialog(null, message, titre, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -35,8 +35,8 @@ public class Saisie {
 	
 	/**
 	 * Affichage d'un message d'information
-	 * @param message Texte affich� dans le contenu de la fen�tre
-	 * @param titre Texte affich� dans l'en-t�te de la fen�tre
+	 * @param message Texte affiche dans le contenu de la fenetre
+	 * @param titre Texte affiche dans l'en-tete de la fenetre
 	 */
 	public static void infoMsgOk(String message, String titre) {
 		JOptionPane.showMessageDialog(null, message, titre, JOptionPane.INFORMATION_MESSAGE);
@@ -44,8 +44,8 @@ public class Saisie {
 	
 	/**
 	 * Affichage d'un message d'erreur 
-	 * @param message Texte affich� dans le contenu de la fen�tre
-	 * @param titre Texte affich� dans l'en-t�te de la fen�tre
+	 * @param message Texte affiche dans le contenu de la fenetre
+	 * @param titre Texte affiche dans l'en-tete de la fenetre
 	 */
 	public static void erreurMsgOk(String message, String titre) {
 		JOptionPane.showMessageDialog(null, message, titre, JOptionPane.ERROR_MESSAGE);

@@ -10,10 +10,10 @@ public class Case extends JPanel {
 	private Color bgCol;
 	
 	/** 
-	 * Construit/Instencie un nouvel objet Case
+	 * Construit un objet Case
 	 * @param ligne Nombre de lignes du plateau de jeu
 	 * @param col 	Nombre de colonnes du plateau de jeu
-	 * @param a		Valeur représentant le joueur en cours
+	 * @param a		Valeur representant le joueur en cours
 	 * @param j		Objet Jeu de la partie en cours
 	 */
 	public Case(int ligne, int col, int a, Jeu j) {
@@ -31,13 +31,13 @@ public class Case extends JPanel {
 		repaint();
 	}
 	
-	/** Modifie la couleur de l'arrière-plan du plateau de jeu*/
+	/** Modifie la couleur de l'arriere-plan du plateau de jeu*/
 	public void modifierBg(Color c) {
 		this.bgCol = c;
 		repaint();
 	}
 	
-	/** Création des images qui représenteront les jetons joués*/
+	/** Creation des images qui representeront les jetons joues*/
 	public void paintComponent(Graphics comp) {
 		Graphics2D comp2D = (Graphics2D)comp;
 		comp2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,

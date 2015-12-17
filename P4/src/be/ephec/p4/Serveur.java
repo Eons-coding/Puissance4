@@ -19,18 +19,18 @@ public class Serveur extends ServeurClient {
 			System.out.println("En attente du client...");
 			jeu.plateau.setVisible(false);
 			clientSocket = ss.accept();
-			System.out.println("Un client s'est connecté");
+			System.out.println("Un client s'est connecte");
 			jeu.plateau.setVisible(true);
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			
-			// Envoie des paramètres de taille au client
+			// Envoie des parametres de taille au client
 			out.println(jeu.opts.getNbLig());
 			out.println(jeu.opts.getNbCol());
 			
 		}
 		catch(IOException e) {
-			System.out.println("Oops, la crÃ©ation du serveur plante");
+			System.out.println("Erreur lors de la creation du serveur");
 		}
 	}
 		
